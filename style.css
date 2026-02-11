@@ -3,11 +3,14 @@ body {
   padding: 0;
   text-align: center;
   color: black;
-  background-color: floralwhite;
+  background-image: url("./static/red.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 button#yes {
-  background-color: #1de9b6;
+  background-color: #CCFFCC;
   font-size: 6cqw;
   color: #030C68;
 }
@@ -45,8 +48,9 @@ button#no {
 
 #headline {
   font-family: Satisfy cursive;
+  color: whitesmoke;
   text-shadow: 0.02em 0.02em 0 whitesmoke, 0 0 0.5em light;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 button {
@@ -71,4 +75,14 @@ button:hover {
 button#no:hover {
   transition: all .1s ease;
   box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  transition: opacity 0.2s ease;
 }
