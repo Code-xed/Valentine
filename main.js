@@ -88,13 +88,14 @@ function init() {
 
 const w_factor = 4;
 const h_factor = 3;
-const audio = new Audio("./static/meme.mp3");
+const bgAudio = new Audio("./static/sounds/bgsong.mp3");
+const denialAudio = new Audio("./static/sounds/meow.mp3");
 
 let counter = 1;
 
 function playAudio() {
-  //audio.currentTime = 0;
-  //audio.play();
+  bgAudio.currentTime = 5;
+  bgAudio.play();
 }
 
 function Answer(answer) {
@@ -112,6 +113,7 @@ function Answer(answer) {
   if (answer) {
     image.src = './static/bearkiss.gif';
     buttons.add('hidden');
+    playAudio();
     slide1();
   }
   else {
@@ -119,12 +121,12 @@ function Answer(answer) {
     tryagain.classList.remove("hidden");
     image.src = './static/peace-cat.gif';
     buttons.add('hidden');
-    heading.innerHTML = "did you just say i'll skip?";
+    heading.textContent = "did you just say i'll skip?";
     //width += w_factor;
     //height += h_factor;
     //YES.style.width = width + "px";
     //YES.style.height = height + "px";
-    NO.innerHTML = answers[counter];
+    NO.textContent = answers[counter];
     counter += 1;
   }
 }
@@ -135,6 +137,8 @@ function tryAgain(btn, para, nope) {
   para.textContent = "did you just say no?";
   //const again = document.createElement("button");
   btn.onclick = function() {
+    denialAudio.pause();
+    bgAudio.play();
     propose(btn, para);
   };
   nope.remove();
@@ -146,7 +150,7 @@ function resetUI() {
 
 function slide1() {
   blur();
-  heading.innerHTML = "gooooood";
+  heading.textContent = "gooooood";
   const btn = document.createElement("button");
   btn.textContent = "Next";
   btn.onclick = function() {
@@ -158,7 +162,7 @@ function slide1() {
 function slide2(btn) {
   blur();
   //bt.remove();
-  heading.innerHTML = "are you ready for 7 days of love?";
+  heading.textContent = "are you ready for 7 days of love?";
   //const btn = document.createElement("button")
   btn.textContent = "ofcc";
   btn.onclick = function() {
@@ -170,36 +174,43 @@ function slide2(btn) {
 
 function rose(btn) {
   blur();
+  btn.remove();
   image.src = "./static/roseday.gif";
-  heading.innerHTML = "HAPPY ROSE DAY 🌹";
+  heading.textContent = "HAPPY ROSE DAY 🌹";
   const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "🥀";
-  para.textContent = "This virtual bouquet is for you - a quiet inder of everything I feel but don't always Every rose in it carries a little piece of my t: the way you make me smile, the way you like home, and the way choosing you feels -tless. Even if I can't place these flowers in ur hands, I hope you feel the love behind . This bouquet isn't just for Rose Day - it's you, today, tomorrow, and every time my heart finds its way back to you"
+  typeText(para, "This virtual bouquet is for you - a quiet inder of everything I feel but don't always Every rose in it carries a little piece of my t: the way you make me smile, the way you like home, and the way choosing you feels -tless. Even if I can't place these flowers in ur hands, I hope you feel the love behind . This bouquet isn't just for Rose Day - it's you, today, tomorrow, and every time my heart finds its way back to you", showButton);
   //btn.addEventListener("click", () => propose(btn, para));
   btn.onclick = function() {
     propose(btn, para);
   };
-  container.appendChild(para)
+  function showButton() {
+    container.appendChild(para);
+    container.appendChild(btn);
+  }
 }
 
 function propose(btn, para) {
   blur();
   btn.remove();
   image.src = "./static/propose.gif";
-  heading.innerHTML = "HAPPY PROPOSE DAY 💌";
+      heading.textContent = "HAPPY PROPOSE DAY 💌";
   //const yes = document.createElement('button');
   const nope = document.createElement("button");
   //yes.textContent = "yes!!";
   nope.textContent = "no";
   btn.textContent = "yes!!";
-  para.textContent = "a choice I'm making with my whole heart. I want to walk with you through every phase, every high and every quiet day. So here I am, honestly and completely...will you be mine?";
+  typeText(para, "a choice I'm making with my whole heart. I want to walk with you through every phase, every high and every quiet day. So here I am, honestly and completely...will you be mine?", showChoice);
   //no.onclick = function() {
   //  tryagain(btn, para);
  // }
   nope.onclick = function() {
+    denialAudio.currentTime = 1;
+    bgAudio.pause();
+    denialAudio.play();
     tryAgain(btn, para, nope);
-    heading.innerHTML = "";
+    heading.textContent = "";
   };
   
   btn.onclick = function() {
@@ -208,14 +219,16 @@ function propose(btn, para) {
   };
   
   //container.appendChild(para);
-  container.appendChild(nope);
-  container.appendChild(btn);
+  function showChoice() {
+    container.appendChild(nope);
+    container.appendChild(btn);
+  }
 }
 
 function chocolate(btn, para) {
   blur();
   image.src = "./static/chocolate.gif";
-  heading.innerHTML = "HAPPY CHOCOLATE DAY 🍫";
+  heading.textContent = "HAPPY CHOCOLATE DAY 🍫";
   //const para = document.createElement('p');
   ///const btn = document.createElement("button");
   btn.textContent = "next";
@@ -232,7 +245,7 @@ function teddy(btn, para) {
   //bt.remove();
   blur();
   image.src = "./static/teddy.gif";
-  heading.innerHTML = "HAPPY TEDDY DAY 🧸";
+  heading.textContent = "HAPPY TEDDY DAY 🧸";
  // const para = document.createElement('p');
  // const btn = document.createElement("button");
   btn.textContent = "more";
@@ -249,7 +262,7 @@ function promise(btn, para) {
   //bt.remove();
   blur();
   image.src = "./static/promise.gif";
-  heading.innerHTML = "HAPPY PROMISE DAY 💫";
+  heading.textContent = "HAPPY PROMISE DAY 💫";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "nexttt";
@@ -266,7 +279,7 @@ function hug(btn, para) {
   //bt.remove();
   blur();
   image.src = "./static/hug.gif";
-  heading.innerHTML = "HAPPY HUG DAY 🫂"; 
+  heading.textContent = "HAPPY HUG DAY 🫂"; 
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "more";
@@ -284,11 +297,11 @@ function kiss(btn, para) {
   
   blur();
   image.src = "./static/kiss.gif";
-  heading.innerHTML = "HAPPY KISS DAY 💋";
+  heading.textContent = "HAPPY KISS DAY 💋";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "awww";
-  para.textContent = "I wish I could be there to hold you close, but until then, this kiss is for you - a little piece of me, sent straight to your heart. Even from distance, let it remind you that you're mine, that I'm thinking of you, and that every moment I can't be with you, I'm still loving you fiercely";
+  typeText(para, "I wish I could be there to hold you close, but until then, this kiss is for you - a little piece of me, sent straight to your heart. Even from distance, let it remind you that you're mine, that I'm thinking of you, and that every moment I can't be with you, I'm still loving you fiercely");
   //btn.addEventListener("click", () => propose(btn));
   //container.appendChild(para)
   //container.appendChild(btn)
@@ -299,12 +312,33 @@ function kiss(btn, para) {
 
 function valentines(btn, para) {
   btn.remove();
+  para.remove();
   blur();
   image.src = "./static/valenday.gif";
-  heading.innerHTML = "HAPPY VALENTINE'S DAY, I LOVE YOU💘";
+  heading.textContent = "HAPPY VALENTINE'S DAY, I LOVE YOU💘";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   //btn.textContent = "yayy";
   //para.textContent = "";
 }
 
+let typingId = 0;
+
+function typeText(el, text, onDone, speed = 80) {
+    typingId++;              // invalidate previous runs
+    const id = typingId;
+
+    el.textContent = "";
+    let i = 0;
+
+    function tick() {
+        if(id !== typingId) return; // STOP leaked timers
+        if(i < text.length) {
+            el.textContent += text[i++];
+            setTimeout(tick, speed);
+        } else {
+            if(onDone) onDone();
+        }
+    }
+    tick();
+}
