@@ -6,10 +6,26 @@ window.addEventListener("load", () => {
     setTimeout(() => overlay.remove(), 200)
   }, 150)
 })
-function init() {
-  YES.addEventListener("click", () => Answer(true))
-  NO.addEventListener("click", () => Answer(false))
-  tryagain.addEventListener("click", resetUI)
+
+function showOverlay() {
+  if (document.getElementById("overlay")) return
+
+  const overlay = document.createElement("div")
+  overlay.id = "overlay"
+  document.body.appendChild(overlay)
+}
+
+function hideOverlay() {
+  const overlay = document.getElementById("overlay")
+  if (!overlay) return
+
+  overlay.style.opacity = "0"
+  setTimeout(() => overlay.remove(), 200)
+}
+
+function blur() {
+  showOverlay();
+  setTimeout(hideOverlay, 150);
 }
 
 const answers = ["No", "Are you sure?", "Really sure?", "Are you positive?", "Pookie Please", "Just think about it", "If you say no, I'll be very sad", "I'll be very very sad", "I'll be very very very very sad", "Fine, I'll stop asking!", "Just kdding, PLEASE SAY YES!!", "I'll be very very very very very very sad", "You're breaking my heart :("];
@@ -22,6 +38,12 @@ const NO = document.getElementById('no');
 const buttons = document.getElementsByClassName('button-container')[0].classList;
 const tryagain = document.getElementById('tryagain');
 //console.log(buttons);
+
+function init() {
+  YES.addEventListener("click", () => Answer(true))
+  NO.addEventListener("click", () => Answer(false))
+  tryagain.addEventListener("click", resetUI)
+}
 
 const w_factor = 4;
 const h_factor = 3;
@@ -50,10 +72,9 @@ function Answer(answer) {
     image.src = './static/bearkiss.gif';
     buttons.add('hidden');
     slide1();
-    heading.innerHTML = "OkYAwww! YAY!!!";
   }
   else {
-    playAudio();
+    blur();
     tryagain.classList.remove("hidden");
     image.src = './static/peace-cat.gif';
     buttons.add('hidden');
@@ -67,18 +88,170 @@ function Answer(answer) {
   }
 }
 
+function tryAgain(btn, para) {
+  btn.textContent = "try again.";
+  para.textContent = "did you just say no?";
+  //const again = document.createElement("button");
+  btn.onclick = function() {
+    propose(btn, para);
+  };
+}
+
 function resetUI() {
   location.reload();
 }
 
 function slide1() {
-  heading.innerHTML = "goooood";
-  const btn = document.createElement("button")
-  btn.textContent = "Next"
-  btn.addEventListener("click", () => slide2());
+  blur();
+  heading.innerHTML = "gooooood";
+  const btn = document.createElement("button");
+  btn.textContent = "Next";
+  btn.onclick = function() {
+    slide2(btn);
+  };
   container.appendChild(btn)
 }
 
-function slide2() {
-  
+function slide2(btn) {
+  blur();
+  //bt.remove();
+  heading.innerHTML = "are you ready for 7 days of love?";
+  //const btn = document.createElement("button")
+  btn.textContent = "ofcc";
+  btn.onclick = function() {
+    rose(btn);
+  };
+  //btn.addEventListener("click", () => rose(btn));
+  //container.appendChild(btn)
 }
+
+function rose(btn) {
+  blur();
+  heading.innerHTML = "HAPPY ROSE DAY 🌹";
+  const para = document.createElement('p');
+  //const btn = document.createElement("button");
+  btn.textContent = "🥀";
+  para.textContent = "This virtual bouquet is for you - a quiet inder of everything I feel but don't always Every rose in it carries a little piece of my t: the way you make me smile, the way you like home, and the way choosing you feels -tless. Even if I can't place these flowers in ur hands, I hope you feel the love behind . This bouquet isn't just for Rose Day - it's you, today, tomorrow, and every time my heart finds its way back to you"
+  //btn.addEventListener("click", () => propose(btn, para));
+  btn.onclick = function() {
+    propose(btn, para);
+  };
+  container.appendChild(para)
+}
+
+function propose(btn, para) {
+  blur();
+  btn.remove();
+  heading.innerHTML = "HAPPY PROPOSE DAY 💌";
+  //const yes = document.createElement('button');
+  const nope = document.createElement("button");
+  //yes.textContent = "yes!!";
+  nope.textContent = "no";
+  btn.textContent = "yes!!";
+  para.textContent = "a choice I'm making with my whole heart. I want to walk with you through every phase, every high and every quiet day. So here I am, honestly and completely...will you be mine?";
+  //no.onclick = function() {
+  //  tryagain(btn, para);
+ // }
+  nope.onclick = function() {
+    tryagain(btn, para);
+  };
+  
+  btn.onclick = function() {
+    nope.remove();
+    chocolate(btn, para);
+  };
+  
+  //container.appendChild(para);
+  container.appendChild(nope);
+  container.appendChild(btn);
+}
+
+function chocolate(btn, para) {
+  blur();
+  heading.innerHTML = "HAPPY CHOCOLATE DAY 🍫";
+  //const para = document.createElement('p');
+  ///const btn = document.createElement("button");
+  btn.textContent = "next";
+  para.textContent = "Some sweetness stays with you forever, and that's exactly how you make me feel. Every moment with you is comforting, joyful, and impossible to forget. Today, this chocolate is just a little reminder of how much richer, warmer, and sweeter my life is with you in it.";
+  //btn.addEventListener("click", () => propose(btn));
+  //container.appendChild(para)
+  //container.appendChild(btn)
+  btn.onclick = function() {
+    teddy(btn, para);
+  };
+}
+
+function teddy(btn, para) {
+  //bt.remove();
+  blur();
+  heading.innerHTML = "HAPPY TEDDY DAY 🧸";
+ // const para = document.createElement('p');
+ // const btn = document.createElement("button");
+  btn.textContent = "more";
+  para.textContent = "This digital teddy comes with all my love, care, and thoughts for you. Even if it's just pixels on your screen, let it remind you that no distance, no time, nothing can change how much you mean to me. You're always in my heart, and always mine";
+  //btn.addEventListener("click", () => propose(btn));
+  //container.appendChild(para)
+  //container.appendChild(btn)
+  btn.onclick = function() {
+    promise(btn, para);
+  };
+}
+
+function promise(btn, para) {
+  //bt.remove();
+  blur();
+  heading.innerHTML = "HAPPY PROMISE DAY 💫";
+  //const para = document.createElement('p');
+  //const btn = document.createElement("button");
+  btn.textContent = "nexttt";
+  para.textContent = "I promise to always choose you, to stand by you through every high and low, and to love you in ways that matter - in actions, in care, and in consistency. This promise isn't just for today; it's for every day, every moment, and everything we'll face together. You're my heart, my home, my forever";
+  //btn.addEventListener("click", () => propose(btn));
+ // container.appendChild(para)
+  //container.appendChild(btn)
+  btn.onclick = function() {
+    hug(btn, para);
+  };
+}
+
+function hug(btn, para) {
+  //bt.remove();
+  blur();
+  heading.innerHTML = "HAPPY HUG DAY 🫂"; 
+  //const para = document.createElement('p');
+  //const btn = document.createElement("button");
+  btn.textContent = "more";
+  para.textContent = "I may not be there to hold you right now, but let this virtual hug carry all my warmth, care, and love for you. Imagine my arms wrapped around you, keeping you safe, close, and loved. Every time you feel it, know that it's me - thinking of you, missing you, and holding you in my heart";
+  //btn.addEventListener("click", () => propose(btn));
+  //container.appendChild(para)
+  //container.appendChild(btn)
+  btn.onclick = function() {
+    kiss(btn, para);
+  };
+}
+
+function kiss(btn, para) {
+  //bt.remove();
+  blur();
+  heading.innerHTML = "HAPPY KISS DAY 💋";
+  //const para = document.createElement('p');
+  //const btn = document.createElement("button");
+  btn.textContent = "awww";
+  para.textContent = "I wish I could be there to hold you close, but until then, this kiss is for you - a little piece of me, sent straight to your heart. Even from distance, let it remind you that you're mine, that I'm thinking of you, and that every moment I can't be with you, I'm still loving you fiercely";
+  //btn.addEventListener("click", () => propose(btn));
+  //container.appendChild(para)
+  //container.appendChild(btn)
+  btn.onclick = function() {
+    valentines(btn, para);
+  };
+}
+
+function valentines(btn, para) {
+  //bt.remove();
+  blur();
+  heading.innerHTML = "HAPPY VALENTINE'S DAY, I LOVE YOU💘";
+  //const para = document.createElement('p');
+  //const btn = document.createElement("button");
+  //btn.textContent = "yayy";
+  //para.textContent = "";
+}
+
