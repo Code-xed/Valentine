@@ -7,6 +7,38 @@ window.addEventListener("load", () => {
   }, 150)
 })
 
+window.addEventListener("load", function() {
+    preloadGifs([
+        "./static/peace-cat.gif",
+        "./static/bearkiss.gif",
+        "./static/roseday.gif",
+        "./static/propose.gif",
+        "./static/chocolate.gif",
+        "./static/teddy.gif",
+        "./static/promise.gif",
+        "./static/hug.gif",
+        "./static/kiss.gif",
+        "./static/valenday.gif"
+    ]);
+});
+
+function preloadGifs(urls) {
+    let loaded = 0;
+    const total = urls.length;
+
+    showOverlay(); // stays visible, no auto-hide
+
+    for(let i = 0; i < total; i++) {
+        const img = new Image();
+        img.onload = img.onerror = function() {
+            loaded++;
+            if(loaded === total) {
+                blur(10); // auto-hide after default 150ms
+            }
+        };
+        img.src = urls[i];
+    }
+}
 function showOverlay() {
   if (document.getElementById("overlay")) return
 
@@ -23,11 +55,20 @@ function hideOverlay() {
   setTimeout(() => overlay.remove(), 200)
 }
 
-function blur() {
-  showOverlay();
-  setTimeout(hideOverlay, 150);
+function blur(ms=150) {
+    showOverlay();
+
+    if(blurTimer) {
+        clearTimeout(blurTimer);
+    }
+
+    blurTimer = setTimeout(function() {
+        hideOverlay();
+        blurTimer = null;
+    }, ms);
 }
 
+let blurTimer = null;
 const answers = ["No", "Are you sure?", "Really sure?", "Are you positive?", "Pookie Please", "Just think about it", "If you say no, I'll be very sad", "I'll be very very sad", "I'll be very very very very sad", "Fine, I'll stop asking!", "Just kdding, PLEASE SAY YES!!", "I'll be very very very very very very sad", "You're breaking my heart :("];
 
 const container = document.querySelector(".questions");
@@ -88,13 +129,15 @@ function Answer(answer) {
   }
 }
 
-function tryAgain(btn, para) {
+function tryAgain(btn, para, nope) {
+  image.src = "./static/dareu.gif";
   btn.textContent = "try again.";
   para.textContent = "did you just say no?";
   //const again = document.createElement("button");
   btn.onclick = function() {
     propose(btn, para);
   };
+  nope.remove();
 }
 
 function resetUI() {
@@ -155,7 +198,8 @@ function propose(btn, para) {
   //  tryagain(btn, para);
  // }
   nope.onclick = function() {
-    tryagain(btn, para);
+    tryAgain(btn, para, nope);
+    heading.innerHTML = "";
   };
   
   btn.onclick = function() {
@@ -254,7 +298,7 @@ function kiss(btn, para) {
 }
 
 function valentines(btn, para) {
-  //bt.remove();
+  btn.remove();
   blur();
   image.src = "./static/valenday.gif";
   heading.innerHTML = "HAPPY VALENTINE'S DAY, I LOVE YOU💘";
