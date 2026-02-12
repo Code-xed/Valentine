@@ -174,7 +174,7 @@ function slide2(btn) {
 
 function rose(btn) {
   function showButton() {
-    container.appendChild(btn);
+    
   }
   
   blur();
@@ -190,6 +190,7 @@ function rose(btn) {
     propose(btn, para);
   };
   container.appendChild(para);
+  container.appendChild(btn);
 }
 
 function propose(btn, para) {
@@ -230,10 +231,13 @@ function chocolate(btn, para) {
   blur();
   image.src = "./static/chocolate.gif";
   heading.textContent = "HAPPY CHOCOLATE DAY 🍫";
+  function showButton() {
+    
+  }
   //const para = document.createElement('p');
   ///const btn = document.createElement("button");
   btn.textContent = "next";
-  para.textContent = "Some sweetness stays with you forever, and that's exactly how you make me feel. Every moment with you is comforting, joyful, and impossible to forget. Today, this chocolate is just a little reminder of how much richer, warmer, and sweeter my life is with you in it.";
+  typeText(para, "Some sweetness stays with you forever, and that's exactly how you make me feel. Every moment with you is comforting, joyful, and impossible to forget. Today, this chocolate is just a little reminder of how much richer, warmer, and sweeter my life is with you in it.", showButton);
   //btn.addEventListener("click", () => propose(btn));
   //container.appendChild(para)
   //container.appendChild(btn)
@@ -243,6 +247,9 @@ function chocolate(btn, para) {
 }
 
 function teddy(btn, para) {
+  function showButton() {
+    
+  }
   //bt.remove();
   blur();
   image.src = "./static/teddy.gif";
@@ -250,7 +257,7 @@ function teddy(btn, para) {
  // const para = document.createElement('p');
  // const btn = document.createElement("button");
   btn.textContent = "more";
-  para.textContent = "This digital teddy comes with all my love, care, and thoughts for you. Even if it's just pixels on your screen, let it remind you that no distance, no time, nothing can change how much you mean to me. You're always in my heart, and always mine";
+  typeText(para, "This digital teddy comes with all my love, care, and thoughts for you. Even if it's just pixels on your screen, let it remind you that no distance, no time, nothing can change how much you mean to me. You're always in my heart, and always mine", showButton);
   //btn.addEventListener("click", () => propose(btn));
   //container.appendChild(para)
   //container.appendChild(btn)
@@ -261,13 +268,16 @@ function teddy(btn, para) {
 
 function promise(btn, para) {
   //bt.remove();
+  function showButton() {
+    
+  }
   blur();
   image.src = "./static/promise.gif";
   heading.textContent = "HAPPY PROMISE DAY 💫";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "nexttt";
-  para.textContent = "I promise to always choose you, to stand by you through every high and low, and to love you in ways that matter - in actions, in care, and in consistency. This promise isn't just for today; it's for every day, every moment, and everything we'll face together. You're my heart, my home, my forever";
+  typeText(para, "I promise to always choose you, to stand by you through every high and low, and to love you in ways that matter - in actions, in care, and in consistency. This promise isn't just for today; it's for every day, every moment, and everything we'll face together. You're my heart, my home, my forever", showButton);
   //btn.addEventListener("click", () => propose(btn));
  // container.appendChild(para)
   //container.appendChild(btn)
@@ -279,12 +289,15 @@ function promise(btn, para) {
 function hug(btn, para) {
   //bt.remove();
   blur();
+  function showButton() {
+    
+  }
   image.src = "./static/hug.gif";
   heading.textContent = "HAPPY HUG DAY 🫂"; 
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "more";
-  para.textContent = "I may not be there to hold you right now, but let this virtual hug carry all my warmth, care, and love for you. Imagine my arms wrapped around you, keeping you safe, close, and loved. Every time you feel it, know that it's me - thinking of you, missing you, and holding you in my heart";
+  typeText(para, "I may not be there to hold you right now, but let this virtual hug carry all my warmth, care, and love for you. Imagine my arms wrapped around you, keeping you safe, close, and loved. Every time you feel it, know that it's me - thinking of you, missing you, and holding you in my heart", showButton);
   //btn.addEventListener("click", () => propose(btn));
   //container.appendChild(para)
   //container.appendChild(btn)
@@ -295,14 +308,15 @@ function hug(btn, para) {
 
 function kiss(btn, para) {
   //bt.remove();
-  
+  function showButton() {
+  }
   blur();
   image.src = "./static/kiss.gif";
   heading.textContent = "HAPPY KISS DAY 💋";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
   btn.textContent = "awww";
-  typeText(para, "I wish I could be there to hold you close, but until then, this kiss is for you - a little piece of me, sent straight to your heart. Even from distance, let it remind you that you're mine, that I'm thinking of you, and that every moment I can't be with you, I'm still loving you fiercely");
+  typeText(para, "I wish I could be there to hold you close, but until then, this kiss is for you - a little piece of me, sent straight to your heart. Even from distance, let it remind you that you're mine, that I'm thinking of you, and that every moment I can't be with you, I'm still loving you fiercely", showButton);
   //btn.addEventListener("click", () => propose(btn));
   //container.appendChild(para)
   //container.appendChild(btn)

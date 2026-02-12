@@ -120,3 +120,10 @@ img {
   font-variation-settings:
     "wdth" 100;
 }
+
+.outline {
+    color: #fff;
+    text-shadow:
+        0 0 2px #000,
+        0 0 6px rgba(0,0,0,0.8);
+}
