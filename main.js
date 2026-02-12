@@ -173,6 +173,10 @@ function slide2(btn) {
 }
 
 function rose(btn) {
+  function showButton() {
+    container.appendChild(btn);
+  }
+  
   blur();
   btn.remove();
   image.src = "./static/roseday.gif";
@@ -185,10 +189,7 @@ function rose(btn) {
   btn.onclick = function() {
     propose(btn, para);
   };
-  function showButton() {
-    container.appendChild(para);
-    container.appendChild(btn);
-  }
+  container.appendChild(para);
 }
 
 function propose(btn, para) {
@@ -327,10 +328,8 @@ let typingId = 0;
 function typeText(el, text, onDone, speed = 80) {
     typingId++;              // invalidate previous runs
     const id = typingId;
-
     el.textContent = "";
     let i = 0;
-
     function tick() {
         if(id !== typingId) return; // STOP leaked timers
         if(i < text.length) {
