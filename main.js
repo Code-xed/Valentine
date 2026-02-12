@@ -127,6 +127,7 @@ function slide2(btn) {
 
 function rose(btn) {
   blur();
+  image.src = "./static/roseday.gif";
   heading.innerHTML = "HAPPY ROSE DAY 🌹";
   const para = document.createElement('p');
   //const btn = document.createElement("button");
@@ -142,6 +143,7 @@ function rose(btn) {
 function propose(btn, para) {
   blur();
   btn.remove();
+  image.src = "./static/propose.gif";
   heading.innerHTML = "HAPPY PROPOSE DAY 💌";
   //const yes = document.createElement('button');
   const nope = document.createElement("button");
@@ -168,6 +170,7 @@ function propose(btn, para) {
 
 function chocolate(btn, para) {
   blur();
+  image.src = "./static/chocolate.gif";
   heading.innerHTML = "HAPPY CHOCOLATE DAY 🍫";
   //const para = document.createElement('p');
   ///const btn = document.createElement("button");
@@ -184,6 +187,7 @@ function chocolate(btn, para) {
 function teddy(btn, para) {
   //bt.remove();
   blur();
+  image.src = "./static/teddy.gif";
   heading.innerHTML = "HAPPY TEDDY DAY 🧸";
  // const para = document.createElement('p');
  // const btn = document.createElement("button");
@@ -200,6 +204,7 @@ function teddy(btn, para) {
 function promise(btn, para) {
   //bt.remove();
   blur();
+  image.src = "./static/promise.gif";
   heading.innerHTML = "HAPPY PROMISE DAY 💫";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
@@ -216,6 +221,7 @@ function promise(btn, para) {
 function hug(btn, para) {
   //bt.remove();
   blur();
+  image.src = "./static/hug.gif";
   heading.innerHTML = "HAPPY HUG DAY 🫂"; 
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
@@ -231,7 +237,9 @@ function hug(btn, para) {
 
 function kiss(btn, para) {
   //bt.remove();
+  
   blur();
+  image.src = "./static/kiss.gif";
   heading.innerHTML = "HAPPY KISS DAY 💋";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
@@ -248,6 +256,7 @@ function kiss(btn, para) {
 function valentines(btn, para) {
   //bt.remove();
   blur();
+  image.src = "./static/valenday.gif";
   heading.innerHTML = "HAPPY VALENTINE'S DAY, I LOVE YOU💘";
   //const para = document.createElement('p');
   //const btn = document.createElement("button");
